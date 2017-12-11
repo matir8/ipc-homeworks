@@ -11,8 +11,8 @@
 
 int main()
 {
-	int memFd = shm_open( "simple_memory", O_CREAT | O_RDWR, S_IRWXU );
-	if( memFd == -1 )
+	int memFd = shm_open("simple_memory", O_CREAT | O_RDWR, S_IRWXU);
+	if (memFd == -1)
 	{
 		perror("Can't open file");
 		return 1;
@@ -20,14 +20,14 @@ int main()
 
 	int res = ftruncate(memFd, sizeof(struct cyclic_buf));
 
-	if( res < 0 )
+	if (res < 0)
 	{
 		perror("Can't truncate file");
 		return res;
 	}
-	
-	struct cyclic_buf* mem = mmap( NULL, sizeof(struct cyclic_buf), PROT_READ | PROT_WRITE, MAP_SHARED, memFd, 0 );
-	if( mem == (void *) -1 )
+
+	struct cyclic_buf *mem = mmap(NULL, sizeof(struct cyclic_buf), PROT_READ | PROT_WRITE, MAP_SHARED, memFd, 0);
+	if (mem == (void *)-1)
 	{
 		perror("Can't mmap");
 		return -1;
@@ -35,15 +35,15 @@ int main()
 
 	mem->pos %= 4096;
 	int currVal = mem->array[mem->pos];
-	while(true)
+	while (true)
 	{
 		mem->pos++;
 		mem->pos %= 4096;
 		mem->array[mem->pos] = currVal;
 		currVal++;
-		if(mem->pos % 512 == 0)
+		if (mem->pos % 512 == 0)
 			sleep(1);
-	}	
+	}
 
 	return 0;
 }
