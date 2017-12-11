@@ -32,8 +32,6 @@ int main()
 			continue;
 		}
 		printf("%d\n", mem->array[pos]);
-		if (mem->array[pos] == 9)
-			printf("\n");
 		pos++;
 		pos %= 4096;
 	}
