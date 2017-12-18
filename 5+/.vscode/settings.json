@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "gen.h": "c",
+    "cyclicbuf.h": "c"
+  }
+}
