@@ -32,9 +32,13 @@ int main()
 
   while (true)
   {
+    if(mem->pos - pos > 512){
+			printf("Reader was too slow\n");
+			exit(1);
+		}
+
     if (mem->pos == pos)
     {
-      sleep(1);
       continue;
     }
 
@@ -45,6 +49,7 @@ int main()
       printf("Error\n");
       break;
     }
+
 
     if (prev == curr - 1)
     {
