@@ -32,22 +32,25 @@ int main()
 
   while (true)
   {
-    sleep(1);
     if (mem->pos == pos)
     {
       sleep(1);
       continue;
     }
-    
+
     curr = verify((void *)mem->array[pos % 512]);
 
     if (curr == -1)
     {
-      printf("Error");
-      exit(1);
+      printf("Error\n");
+      break;
     }
 
-    printf("%ld\n", curr);
+    if (prev == curr - 1)
+    {
+      printf("Verified %ld\n", curr);
+    }
+
     pos++;
     prev = curr;
   }

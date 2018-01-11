@@ -34,13 +34,12 @@ int main()
 		return -1;
 	}
 
-	int pos = 1;
-	uint64_t seed = pos;
-	mem->pos = pos - 1;
+	uint64_t seed = 0;
+	mem->pos = 0;
 
 	while (1){
-		mem->pos++;
     generate((void *)mem->array[mem->pos % 512], seed);
+		mem->pos++;
 
 		printf("%ld\n", seed);
 		seed++;
